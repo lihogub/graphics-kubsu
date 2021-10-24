@@ -3,19 +3,20 @@ package ru.lihogub
 import org.lwjgl.glfw.Callbacks
 import org.lwjgl.glfw.GLFW
 import org.lwjgl.glfw.GLFWErrorCallback
+import org.lwjgl.glfw.GLFWKeyCallback
 import org.lwjgl.opengl.GL
 import org.lwjgl.opengl.GL46
 import org.lwjgl.system.MemoryStack
 import org.lwjgl.system.MemoryUtil
 
 open class Window(
-    private val width: Int,
-    private val height: Int,
+    protected val width: Int,
+    protected val height: Int,
     private val xPos: Int,
     private val yPos: Int,
     private val title: String = "Window Title"
 ) : Runnable {
-    private var window: Long = 0
+    protected var window: Long = 0
 
     override fun run() {
         init()
@@ -28,7 +29,13 @@ open class Window(
         GLFW.glfwSetErrorCallback(null)!!.free()
     }
 
-    open fun render() {
+    open fun onStart() {
+    }
+
+    open fun onRender() {
+    }
+
+    open fun onKeyPressed(key: Int) {
     }
 
     private fun init() {
@@ -50,14 +57,14 @@ open class Window(
             throw RuntimeException("Failed to create the GLFW window")
 
         // Setup a key callback. It will be called every time a key is pressed, repeated or released.
-        GLFW.glfwSetKeyCallback(
-            window
-        ) { window: Long, key: Int, _: Int, action: Int, _: Int ->
-            if (key == GLFW.GLFW_KEY_ESCAPE && action == GLFW.GLFW_RELEASE) GLFW.glfwSetWindowShouldClose(
-                window,
-                true
-            ) // We will detect this in the rendering loop
-        }
+        GLFW.glfwSetKeyCallback(window, object : GLFWKeyCallback() {
+            override fun invoke(window: Long, key: Int, scancode: Int, action: Int, mods: Int) {
+                if (key == GLFW.GLFW_KEY_ESCAPE && action == GLFW.GLFW_RELEASE)
+                    GLFW.glfwSetWindowShouldClose(window, true)
+                if (action != GLFW.GLFW_RELEASE)
+                    onKeyPressed(key)
+            }
+        })
         MemoryStack.stackPush().use { stack ->
             val pWidth = stack.mallocInt(1) // int*
             val pHeight = stack.mallocInt(1) // int*
@@ -82,11 +89,10 @@ open class Window(
         GL.createCapabilities()
         // Run the rendering loop until the user has attempted to close
         // the window or has pressed the ESCAPE key.
+        onStart()
         while (!GLFW.glfwWindowShouldClose(window)) {
             GL46.glClear(GL46.GL_COLOR_BUFFER_BIT or GL46.GL_DEPTH_BUFFER_BIT)
-
-            render()
-
+            onRender()
             GLFW.glfwSwapBuffers(window)
             GLFW.glfwPollEvents()
         }

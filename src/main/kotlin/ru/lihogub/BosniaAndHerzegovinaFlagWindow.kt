@@ -5,8 +5,8 @@ import org.lwjgl.opengl.GL46
 class BosniaAndHerzegovinaFlagWindow :
     Window(width = 800, height = 400, xPos = 500, yPos = 500, title = "Bosnia and Herzegovina flag") {
 
-    override fun render() {
-        super.render()
+    override fun onRender() {
+        super.onRender()
 
         GL46.glBegin(GL46.GL_QUADS)
         GL46.glColor3d(0.0, 47.0 / 255, 108.0 / 255)
