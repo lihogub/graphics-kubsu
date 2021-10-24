@@ -1,7 +1,9 @@
-package ru.lihogub
+package ru.lihogub.lab2
 
 import org.lwjgl.glfw.GLFW
 import org.lwjgl.opengl.GL46
+import ru.lihogub.common.FigureUtils
+import ru.lihogub.common.Window
 
 class Pseudo3DCatWindow : Window(width = 1000, height = 600, xPos = 500, yPos = 500, title = "Pseudo 3D Cat Window") {
     private var rY = 0.0

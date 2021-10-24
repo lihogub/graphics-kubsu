@@ -1,4 +1,4 @@
-package ru.lihogub
+package ru.lihogub.common
 
 import org.lwjgl.glfw.Callbacks
 import org.lwjgl.glfw.GLFW
@@ -16,7 +16,7 @@ open class Window(
     private val yPos: Int,
     private val title: String = "Window Title"
 ) : Runnable {
-    protected var window: Long = 0
+    private var window: Long = 0
 
     override fun run() {
         init()

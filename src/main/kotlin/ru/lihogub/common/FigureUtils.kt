@@ -1,4 +1,4 @@
-package ru.lihogub
+package ru.lihogub.common
 
 import org.lwjgl.opengl.GL46
 

@@ -1,6 +1,7 @@
-package ru.lihogub
+package ru.lihogub.lab1
 
 import org.lwjgl.opengl.GL46
+import ru.lihogub.common.Window
 
 class BosniaAndHerzegovinaFlagWindow :
     Window(width = 800, height = 400, xPos = 500, yPos = 500, title = "Bosnia and Herzegovina flag") {
@@ -30,23 +31,23 @@ class BosniaAndHerzegovinaFlagWindow :
 
     private fun drawStar(x: Double, y: Double) {
         val size = 0.002
-        GL46.glColor3d(1.0, 1.0, 1.0);
-        GL46.glBegin(GL46.GL_POLYGON);
+        GL46.glColor3d(1.0, 1.0, 1.0)
+        GL46.glBegin(GL46.GL_POLYGON)
         GL46.glVertex2d(x - 40 * size, y + 26 * size)
         GL46.glVertex2d(x + 40 * size, y + 26 * size)
         GL46.glVertex2d(x + 0 * size, y - 32 * size)
-        GL46.glEnd();
+        GL46.glEnd()
 
-        GL46.glBegin(GL46.GL_POLYGON);
+        GL46.glBegin(GL46.GL_POLYGON)
         GL46.glVertex2d(x - 25 * size, y - 68 * size)
         GL46.glVertex2d(x + 0 * size, y + 80 * size)
         GL46.glVertex2d(x + 15 * size, y - 10 * size)
-        GL46.glEnd();
+        GL46.glEnd()
 
-        GL46.glBegin(GL46.GL_POLYGON);
+        GL46.glBegin(GL46.GL_POLYGON)
         GL46.glVertex2d(x + 25 * size, y - 68 * size)
         GL46.glVertex2d(x + 0 * size, y + 80 * size)
         GL46.glVertex2d(x - 15 * size, y - 10 * size)
-        GL46.glEnd();
+        GL46.glEnd()
     }
 }
