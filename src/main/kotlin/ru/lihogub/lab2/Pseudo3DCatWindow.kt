@@ -1,6 +1,8 @@
 package ru.lihogub.lab2
 
 import org.lwjgl.glfw.GLFW
+import org.lwjgl.opengl.GL11.GL_DEPTH_TEST
+import org.lwjgl.opengl.GL11.glEnable
 import org.lwjgl.opengl.GL46
 import ru.lihogub.common.FigureUtils
 import ru.lihogub.common.Window
@@ -36,18 +38,18 @@ class Pseudo3DCatWindow : Window(width = 1000, height = 600, xPos = 500, yPos = 
         FigureUtils.drawBox(orangeR, orangeG * 0.9, orangeB, 550.0, -400.0, 150.0, 100.0, -150.0, 100.0)
 
         // Ears
-        FigureUtils.drawBox(orangeR, orangeG, orangeB, 150.0, 0.0, 0.0, 100.0, 100.0, 100.0)
-        FigureUtils.drawBox(orangeR, orangeG, orangeB, 150.0, 0.0, 150.0, 100.0, 100.0, 100.0)
+        FigureUtils.drawBox(orangeR, orangeG, orangeB, 151.0, 0.0, 0.0, 100.0, 100.0, 100.0)
+        FigureUtils.drawBox(orangeR, orangeG, orangeB, 151.0, 0.0, 150.0, 100.0, 100.0, 100.0)
 
         FigureUtils.drawBox(0.1, 0.1, 0.1, 150.0, 10.0, 10.0, 0.0, 80.0, 80.0)
         FigureUtils.drawBox(0.1, 0.1, 0.1, 150.0, 10.0, 160.0, 0.0, 80.0, 80.0)
 
         // Eyes
-        FigureUtils.drawBox(0.1, 0.1, 0.1, 0.0, -150.0, 0.0, 100.0, 100.0, 100.0)
-        FigureUtils.drawBox(0.1, 0.1, 0.1, 0.0, -150.0, 150.0, 100.0, 100.0, 100.0)
+        FigureUtils.drawBox(0.1, 0.1, 0.1, -2.0, -150.0, -1.0, 100.0, 100.0, 100.0)
+        FigureUtils.drawBox(0.1, 0.1, 0.1, -2.0, -150.0, 151.0, 100.0, 100.0, 100.0)
 
         // Mouth
-        FigureUtils.drawBox(0.0, 0.0, 0.0, 0.0, -175.0, 75.0, 100.0, -25.0, 100.0)
+        FigureUtils.drawBox(0.0, 0.0, 0.0, -1.0, -175.0, 75.0, 100.0, -25.0, 100.0)
 
         // Moustache
         GL46.glBegin(GL46.GL_LINES)
@@ -87,6 +89,7 @@ class Pseudo3DCatWindow : Window(width = 1000, height = 600, xPos = 500, yPos = 
 
     override fun onStart() {
         super.onStart()
+        glEnable(GL_DEPTH_TEST)
         GL46.glScaled(1.0 / width, 1.0 / height, 0.002)
     }
 
