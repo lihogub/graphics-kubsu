@@ -90,7 +90,7 @@ class Pseudo3DCatWindow : Window(width = 1000, height = 600, xPos = 500, yPos = 
     override fun onStart() {
         super.onStart()
         glEnable(GL_DEPTH_TEST)
-        GL46.glScaled(1.0 / width, 1.0 / height, 0.002)
+        GL46.glScaled(1.0 / width, 1.0 / height, 1.0 / (height + width))
     }
 
     override fun onKeyPressed(key: Int) {
