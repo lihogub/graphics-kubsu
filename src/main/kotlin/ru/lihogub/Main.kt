@@ -1,8 +1,8 @@
 package ru.lihogub
 
-import ru.lihogub.lab3.FuelTruck3DWindow
+import ru.lihogub.lab4.LightMovingWindow
 
 fun main() {
-    val w = FuelTruck3DWindow()
+    val w = LightMovingWindow()
     w.run()
 }
