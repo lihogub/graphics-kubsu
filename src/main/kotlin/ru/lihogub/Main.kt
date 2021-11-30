@@ -1,8 +1,8 @@
 package ru.lihogub
 
-import ru.lihogub.lab4.LightMovingWindow
+import ru.lihogub.lab5.ModelSurfacePropertiesWindow
 
 fun main() {
-    val w = LightMovingWindow()
+    val w = ModelSurfacePropertiesWindow()
     w.run()
 }
